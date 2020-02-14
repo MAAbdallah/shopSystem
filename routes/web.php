@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'CompanyController@index'); // localhost:8000/
+Route::get('/getCompanies/{id}','CompanyController@getCompanies');
