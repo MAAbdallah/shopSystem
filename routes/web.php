@@ -14,8 +14,13 @@
 
 
 Auth::routes();
-
+Route::get('/',function(){
+   return(view('welcome')) ;
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'CompanyController@index'); // localhost:8000/
+Route::get('/company', 'CompanyController@index');
 Route::get('/getCompanies/{id}','CompanyController@getCompanies');
+
+Route::get('/type', 'TypeController@index');
+Route::get('/getTypes/{id}','TypeController@getTypes');
