@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\CompanyTypeRelation;
 use App\Type;
 use Illuminate\Http\Request;
 
@@ -24,13 +25,24 @@ class CompanyController extends Controller
         $data = request()->validate([
             'company_name'     => ['required'],
         ]);
-
-        $company = Company::create([
-           'name' => request()->company_name,
-        ]);
+        $search_name = request()->company_name ;
+        $company = Company::where('name',$search_name)->get();
+        $count = $company->count();
         $typeid = request()->type;
-        $type = Type::find($typeid);
-        $company->hasTypes()->attach($type);
+        if($count==0)
+        {
+            $company = Company::create([
+                'name' => request()->company_name,
+            ]);
+            $typeid = request()->type;
+            $type = Type::find($typeid);
+            $company->hasTypes()->attach($type);
+        }
+        $searchRelation = CompanyTypeRelation::query()->where('company_id',$company->first()->id)->where('type_id',$typeid)->get();
+        if($searchRelation->count()==0){
+            $type = Type::find($typeid);
+            $company->first()->hasTypes()->attach($type);
+        }
         return redirect('/');
     }
 

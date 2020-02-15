@@ -7,7 +7,8 @@
             <div class="form-group row">
                 <label for="company" class="col-md-4 col-form-label">Company</label>
                 <select id="company" name="company">
-                    @foreach($companies as $company)
+                    <option id="-1" value="-1">--select--</option>
+                @foreach($companies as $company)
                         <option id="{{$company->id}}" name="{{$company->name}}" value="{{$company->id}}">{{$company->name}}</option>
                     @endforeach
                 </select>
@@ -39,6 +40,9 @@
                 if(companyid > 0){
                     fetchRecords(companyid);
                 }
+                else{
+                    $('#typeTable tbody').empty(); // Empty <tbody>
+                }
 
             });
 
@@ -49,6 +53,7 @@
                 url: '/company/getTypes/'+id,
                 type: 'get',
                 dataType: 'json',
+
                 success: function(response){
 
                     var len = 0;

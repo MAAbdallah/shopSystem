@@ -31,6 +31,7 @@
                         <label for="type" class="col-md-4 col-form-label">Type</label>
 
                         <select id="type" name="type">
+                            <option value="">--select--</option>
                             @foreach($types as $type)
                                 <option id="{{$type->id}}" name="{{$type->name}}" value="{{$type->id}}">{{$type->name}}</option>
                             @endforeach

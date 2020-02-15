@@ -21,13 +21,17 @@ class TypeController extends Controller
         $data = request()->validate([
             'type_name'     => ['required'],
         ]);
-
-        $type = Type::create([
-            'name' => request()->type_name,
-        ]);
+        $search_name = request()->type_name ;
+        $type = Type::where('name',$search_name)->get();
+        $count = $type->count();
+        if($count==0) {
+            $type = Type::create([
+                'name' => request()->type_name,
+            ]);
+        }
         $companyid = request()->company;
         $company = Company::find($companyid);
-        $type->hasCompanies()->attach($company);
+        $type->first()->hasCompanies()->attach($company);
         return redirect('/');
     }
 

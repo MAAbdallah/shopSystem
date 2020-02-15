@@ -7,7 +7,8 @@
             <div class="form-group row">
                 <label for="type" class="col-md-4 col-form-label">Type</label>
                 <select id="type" name="type">
-                    @foreach($types as $type)
+                    <option id="-1" value="-1">--select--</option>
+                @foreach($types as $type)
                         <option id="{{$type->id}}" name="{{$type->name}}" value="{{$type->id}}">{{$type->name}}</option>
                     @endforeach
                 </select>
@@ -31,17 +32,16 @@
     <script src="{{asset('JS/jquery-3.4.1.min.js')}}"></script>
     <script type='text/javascript'>
         $(document).ready(function(){
-
             // Search by companyid
             $('#type').change(function(){
                 var type_id = Number($('#type').val().trim());
-
                 if(type_id > 0){
                     fetchRecords(type_id);
                 }
-
+                else{
+                    $('#companyTable tbody').empty(); // Empty <tbody>
+                }
             });
-
         });
 
         function fetchRecords(id){
@@ -56,7 +56,6 @@
                     if(response['data'] != null){
                         len = response['data'].length;
                     }
-
                     if(len > 0){
                         for(var i=0; i<len; i++){
                             var id = response['data'][i].id;

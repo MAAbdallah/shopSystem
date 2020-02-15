@@ -16,7 +16,7 @@ class Company extends Migration
         //
         Schema::create("company",function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
