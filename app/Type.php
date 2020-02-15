@@ -10,6 +10,10 @@ class Type extends Model
     //
     protected $guarded = [];
     protected $table = 'types';
+    public function hasCompanies()
+    {
+        return $this->belongsToMany(Company::class);
+    }
     public static function getTypeData($id=0){
 
         if($id==0){

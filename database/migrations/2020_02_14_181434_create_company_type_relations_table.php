@@ -13,9 +13,13 @@ class CreateCompanyTypeRelationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('company_type_relations', function (Blueprint $table) {
+        Schema::create('company_type', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('Cid')->unsigned();
+            $table->bigInteger('Tid')->unsigned();
             $table->timestamps();
+            $table->foreign('Cid')->references('id')->on('company');
+            $table->foreign('Tid')->references('id')->on('types');
         });
     }
 

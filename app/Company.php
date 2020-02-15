@@ -10,6 +10,11 @@ class Company extends Model
     //
     protected $guarded = [];
     protected $table = 'company';
+
+    public function hasTypes()
+    {
+        return $this->belongsToMany(Type::class);
+    }
     public static function getCompanyData($id=0){
 
         if($id==0){
@@ -18,6 +23,6 @@ class Company extends Model
             $value=DB::table('company')->where('id', $id)->first();
         }
         return $value;
-
     }
 }
+

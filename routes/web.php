@@ -12,6 +12,7 @@
 */
 
 
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::get('/',function(){
@@ -24,3 +25,14 @@ Route::get('/getCompanies/{id}','CompanyController@getCompanies');
 
 Route::get('/type', 'TypeController@index');
 Route::get('/getTypes/{id}','TypeController@getTypes');
+
+Route::get('/company/create','CompanyController@create');
+Route::post('/company/store','CompanyController@store');
+Route::get('/TypesOFComapny/','CompanyController@show');
+Route::get('/company/getTypes/{id}/','CompanyController@getTypes');
+
+Route::get('/type/create','TypeController@create');
+Route::post('/type/store','TypeController@store');
+Route::get('/CompaniesOfType/','TypeController@show');
+Route::get('/type/getCompanies/{id}','TypeController@getCompanies');
+
