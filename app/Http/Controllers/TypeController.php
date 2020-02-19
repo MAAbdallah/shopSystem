@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\CompanyTypeRelation;
 use App\Type;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class TypeController extends Controller
 {
     //
     public function index(){
-        return view('TypeD.type_view');
+        return view('TypeD.index');
     }
     public function create(){
         $companies = Company::all();
@@ -24,14 +25,21 @@ class TypeController extends Controller
         $search_name = request()->type_name ;
         $type = Type::where('name',$search_name)->get();
         $count = $type->count();
+        $companyid = request()->company;
         if($count==0) {
             $type = Type::create([
                 'name' => request()->type_name,
             ]);
+            $company = Company::find($companyid);
+            $type->hasCompanies()->attach($company);
         }
-        $companyid = request()->company;
-        $company = Company::find($companyid);
-        $type->first()->hasCompanies()->attach($company);
+        else{
+            $searchRelation = CompanyTypeRelation::query()->where('type_id',$type->first()->id)->where('company_id',$companyid)->get();
+            if($searchRelation->count()==0){
+                $company = Company::find($companyid);
+                $type->first()->hasCompanies()->attach($company);
+            }
+        }
         return redirect('/');
     }
 

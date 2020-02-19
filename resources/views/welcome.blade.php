@@ -93,6 +93,10 @@
                     <br> <br>
                     <a href="{{url('/CompaniesOfType')}}">Companies Of Type</a>
                     <a href="{{url('/TypesOFComapny')}}">Types OF Company</a>
+                    <br> <br>
+                    <a href="{{url('/product')}}">Products</a>
+                    <a href="{{url('/product/create')}}">Create Product</a>
+
                 </div>
             </div>
         </div>

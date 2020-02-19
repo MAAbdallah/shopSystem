@@ -30,6 +30,6 @@ class CreateCompanyTypeRelationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company_type_relations');
+        Schema::dropIfExists('company_type');
     }
 }

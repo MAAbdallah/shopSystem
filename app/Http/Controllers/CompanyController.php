@@ -6,18 +6,20 @@ use App\Company;
 use App\CompanyTypeRelation;
 use App\Type;
 use Illuminate\Http\Request;
+use Monolog\Handler\SyslogHandler;
 
 class CompanyController extends Controller
 {
     //
     public function index(){
-        return view('CompanyD.company_view');
+        return view('CompanyD.index');
     }
 
     public function create(){
         $types = Type::all();
         return view('CompanyD.create',compact('types'));
     }
+
 
     public function store(){
         //$compaines = ['toshiba','fresh','LG','unionaire'];
@@ -26,7 +28,7 @@ class CompanyController extends Controller
             'company_name'     => ['required'],
         ]);
         $search_name = request()->company_name ;
-        $company = Company::where('name',$search_name)->get();
+        $company = Company::query()->where('name',$search_name)->get();
         $count = $company->count();
         $typeid = request()->type;
         if($count==0)
@@ -34,14 +36,15 @@ class CompanyController extends Controller
             $company = Company::create([
                 'name' => request()->company_name,
             ]);
-            $typeid = request()->type;
             $type = Type::find($typeid);
             $company->hasTypes()->attach($type);
         }
-        $searchRelation = CompanyTypeRelation::query()->where('company_id',$company->first()->id)->where('type_id',$typeid)->get();
-        if($searchRelation->count()==0){
-            $type = Type::find($typeid);
-            $company->first()->hasTypes()->attach($type);
+        else{
+            $searchRelation = CompanyTypeRelation::query()->where('company_id',$company->first()->id)->where('type_id',$typeid)->get();
+            if($searchRelation->count()==0){
+                $type = Type::find($typeid);
+                $company->first()->hasTypes()->attach($type);
+            }
         }
         return redirect('/');
     }
