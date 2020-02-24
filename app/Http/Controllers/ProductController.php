@@ -27,6 +27,7 @@ class ProductController extends Controller
             'code'     => ['required'],
             'description' => ['required'],
             'price' => ['required','between:0,99999.99'],
+            'count' => ['required','numeric'],
             'company' => ['required'],
             'type' => ['required'],
             'image'     => ['image'],
@@ -46,6 +47,7 @@ class ProductController extends Controller
             'code' =>$data['code'],
             'description' =>$data['description'],
             'price' =>$data['price'],
+            'count' =>$data['count'],
             'company' => $company->name ,
             'type' =>$type->name,
             'image' =>$imagePath,
@@ -55,6 +57,9 @@ class ProductController extends Controller
     }
 
     public function show($id){
+        $Product = Product::query()->where('id',$id)->first();
 
+        return view('ProductD.show', compact('Product'));
     }
+
 }

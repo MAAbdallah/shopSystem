@@ -57,6 +57,21 @@
                         </span>
                         @endif
                     </div>
+                    <div class="form-group row">
+                        <label for="count" class="col-md-4 col-form-label">Count</label>
+                        <input id="count"
+                               type="text"
+                               class="form-control{{ $errors->has('count') ? ' is-invalid' : '' }}"
+                               name="count"
+                               value="{{ old('count') }}"
+                               autocomplete="count" autofocus>
+
+                        @if ($errors->has('count'))
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('count') }}</strong>
+                        </span>
+                        @endif
+                    </div>
 
                     <div class="form-group row">
                         <label for="company" class="col-md-4 col-form-label">Company</label>
