@@ -40,5 +40,7 @@ Route::get('/type/getCompanies/{id}','TypeController@getCompanies');
 Route::get('product','ProductController@index');
 Route::get('product/create','ProductController@create');
 Route::post('product/store','ProductController@store');
+Route::get('product/search','ProductController@find');
+Route::get('filter','ProductController@fetch_data');
 Route::get('product/{id}','ProductController@show');
 
