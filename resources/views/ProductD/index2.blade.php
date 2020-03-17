@@ -44,7 +44,7 @@
                             <a href="{{url('/product/'.$product->id)}}"><img src="{{asset('storage/'.$product->image)}}" alt="" class="img-responsive" ></a>
                             <p align="center"><strong><a href="{{url('/product/'.$product->id)}}"> {{$product->code}} </a></strong></p>
                             <h4 style="text-align:center;" class="text-danger" >{{$product->price}}</h4>
-                            Brand : {{$product->company}}  <br />
+                            <p>Brand : {{$product->company}}  <br />
                             category : {{$product->type}}  <br />
                             count : {{$product->count}}  <br />
                             description :  {{$product->description}}  </p>

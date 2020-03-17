@@ -155,4 +155,6 @@ class ProductController extends Controller
         echo $output ;
     }
 
+
+
 }

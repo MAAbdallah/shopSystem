@@ -37,10 +37,16 @@ Route::post('/type/store','TypeController@store');
 Route::get('/CompaniesOfType/','TypeController@show');
 Route::get('/type/getCompanies/{id}','TypeController@getCompanies');
 
-Route::get('product','ProductController@index');
-Route::get('product/create','ProductController@create');
-Route::post('product/store','ProductController@store');
-Route::get('product/search','ProductController@find');
-Route::get('filter','ProductController@fetch_data');
-Route::get('product/{id}','ProductController@show');
+Route::get('/product','ProductController@index');
+Route::get('/product/create','ProductController@create');
+Route::post('/product/store','ProductController@store');
+Route::get('/product/search','ProductController@find');
+Route::get('/filter','ProductController@fetch_data');
+Route::get('/product/{id}','ProductController@show');
+
+Route::get('/receipt','ReceiptController@index');
+Route::get('/receipt/create','ReceiptController@create');
+Route::post('/receipt/store','ReceiptController@store');
+Route::get('receipt/{id}','ReceiptController@show');
+Route::get('/receipt/fetch/{id}','ReceiptController@fetch');
 
