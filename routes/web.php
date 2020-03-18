@@ -50,3 +50,9 @@ Route::post('/receipt/store','ReceiptController@store');
 Route::get('receipt/{id}','ReceiptController@show');
 Route::get('/receipt/fetch/{id}','ReceiptController@fetch');
 
+Route::get('/bill','BillController@index');
+Route::get('/bill/create','BillController@create');
+Route::post('/bill/store','BillController@store');
+Route::get('bill/{id}','BillController@show');
+Route::get('/bill/fetch/{id}','BillController@fetch');
+

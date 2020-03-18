@@ -99,6 +99,9 @@
                     <br> <br>
                     <a href="{{url('/receipt')}}">Receipts</a>
                     <a href="{{url('/receipt/create')}}">Create Receipt</a>
+                    <br> <br>
+                    <a href="{{url('/bill')}}">Bills</a>
+                    <a href="{{url('/bill/create')}}">Create Receipt</a>
 
                 </div>
             </div>
