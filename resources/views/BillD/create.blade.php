@@ -138,7 +138,7 @@
                     document.getElementById("pr_desc"+index).value  = "";
                     document.getElementById("pr_cpi"+index).value  = 0;
                     document.getElementById("pr_Avilcount"+index).value  = "";
-
+                    changeCountORCost(index);
                 }
             }
         });
@@ -160,7 +160,7 @@
     function checkAvilabilty(index) {
         var count = Number($('#pr_count'+index).val());
         var Avilacount = Number($('#pr_Avilcount'+index).val());
-        if(count<=Avilacount)
+        if(count<=Avilacount&&count>0)
         {
             $('#submit').attr('disabled', false);
         }
@@ -202,7 +202,7 @@
     };
 
     $(document).ready(function() {
-
+        checkAvilabilty(0);
         var i = 1;
 
         $('#add').click(function () {
